@@ -2,5 +2,8 @@
 
 int main(){
 
-    Board test = new Board();
+    Board* gameboard = new Board(7, 6);
+    gameboard->ResetBoard();
+
+    delete gameboard;
 }

@@ -6,20 +6,19 @@
  * Date: 03-26-21
  */
 
+#include <vector>
+
 class Board{
 
 public:
 
-    Board();
+    Board(const int x, const int y);
     ~Board();
 
     enum Player { RED=1, YELLOW=2 };
     Player current_turn;
     bool win;
-    const int ROWS;
-    const int COLS;
-
-    unsigned char moves[][];
+    int moves;
 
     void PrintBoard();
     bool CheckWin();
