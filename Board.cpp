@@ -42,11 +42,24 @@ void Board::ResetBoard()
 void Board::PrintBoard()
 {
     std::cout << "\n=======================\n" << std::endl;
+    
+    std::string line_border;
+    for(int i = 0; i < width; i++)
+    {
+        line_border += "+-";
+    }
+
+    line_border += "+";
+
+    std::cout << line_border << std::endl;
+
     for(auto each_row : *gameboard){
+        std::cout << "|";
         for(auto each_column : each_row){
-            std::cout << (*GetPiece(each_column)) << " ";
+            std::cout << (*GetPiece(each_column)) << "|";
         }
-        std::cout << std::endl;
+                
+        std::cout << std::endl << line_border << std::endl;
     }
     std::cout << "\n=======================\n" << std::endl;
 }
@@ -85,7 +98,7 @@ int Board::GetPlayerMove(const std::string msg)
 
     } while (!valid);
 
-    return column;
+    return column - 1;
 }
 
 void Board::SetPlayerMove(const Player player_piece, const int column)

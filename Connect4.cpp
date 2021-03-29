@@ -9,7 +9,7 @@ int main(){
 
     while(!gameboard->win){
 
-        int column = gameboard->GetPlayerMove("Choose a column:");
+        int column = gameboard->GetPlayerMove("Choose a column (1 - 7):");
 
         gameboard->SetPlayerMove(gameboard->current_turn, column);
 
