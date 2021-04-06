@@ -1,7 +1,7 @@
 /*
  * Project: Connect4
  * 
- * File: Board Class
+ * File: Board.hpp
  * Author: Anthony Mesa
  * Date: 03-26-21
  */
@@ -13,34 +13,37 @@ class Board{
 
 public:
 
-    // Constructor/Destructor
-
     Board(const int board_size_x, const int board_size_y);
     ~Board();
+    
+    // Win state    
 
-    // Mandatory
+    bool win;
+    void SetWin(bool x);
+    bool GetWin();
+    bool CheckWin();
+
+    // Current player state
 
     enum Player { NONE, RED, YELLOW };
+    const char* PlayerToString(const Player player_number);
+    const char* GetCurrentPlayer();
+    Player NextTurn();
+    Player current_turn;
+
+    // Gameboard state
+
     typedef std::vector<std::vector<Player>> Grid;
 
-    Player current_turn;
-    bool win;
-    Grid* gameboard;
-
-    void PrintBoard();
-    bool CheckWin();
-    Player NextTurn();
-    void ResetBoard();
-
-    // Extra
-
     int height, width;
-    std::string error_msg;
-    bool error;
+    Grid* gameboard;
+    void PrintBoard();
+    void ResetBoard();
+    void MakeMove(const int column);
 
-    void SetPlayerMove(const Player player_piece, const int column);
-    int GetPlayerMove(const std::string msg);
-    const char* GetPiece(const Player player_number);
+    // Error checking
+    
     bool ValidMove(const int column);
-    void PromptRestart();
+    std::string error_msg;
+    std::string GetError();
 };
